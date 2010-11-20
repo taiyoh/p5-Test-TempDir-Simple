@@ -3,7 +3,7 @@ package Test::TempDir::Simple;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Cwd qw/abs_path/;
 use File::Temp qw/tempdir/;
@@ -79,4 +79,44 @@ BEGIN {
     initdir();
 };
 
+=head1 NAME
+
+Test::TempDir::Simple - 任意のディレクトリを一時ディレクトリに展開
+
+=head1 SYNOPSIS
+
+    # if test code
+    use Test::TempDir::Simple -t => @dirs;
+
+    # else
+    use Test::TempDir::Simple -dir => '/path/to/dir', @dirs;
+
+=head1 DESCRIPTION
+
+ファイルに書き出す系のコード等をテストする際、
+指定したディレクトリをテスト環境用にコピーします。
+
+=over 2
+
+=item testdir
+
+生成した一時ディレクトリのパスを返却
+
+=item initdir
+
+生成した一時ディレクトリを削除し、新たに作成しなおす
+
+=back
+
+=head1 SEE ALSO
+
+L<File::Temp>, L<File::Copy::Recursive>
+
+=head1 AUTHOR
+
+taiyoh E<lt>sun.basix@gmail.com<gt>
+
+=cut
+
 1;
+
