@@ -38,13 +38,14 @@ BEGIN {
         my @path;
         my %enable;
         while (my $arg = shift) {
-            (my $a = $arg) =~ s{^-}{};
-            if ($switches{$a}) {
-                if ($a eq 'dir') {
-                    $enable{dir} = shift || '';
-                }
-                else {
-                    $enable{$a}++;
+            if ((my $a = $arg) =~ s{^-}{}) {
+                if ($switches{$a}) {
+                    if ($a eq 'dir') {
+                        $enable{dir} = shift || '';
+                    }
+                    else {
+                        $enable{$a}++;
+                    }
                 }
             }
             else {
