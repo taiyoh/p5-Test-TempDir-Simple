@@ -3,7 +3,7 @@ package Test::TempDir::Simple;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use Cwd qw/abs_path/;
 use File::Temp qw/tempdir/;
@@ -58,12 +58,11 @@ BEGIN {
                 require 'FindBin.pm';
                 FindBin->import;
             }
-            my @p = reverse split "/", "$FindBin::Bin";
-            my @t_path;
-            while (my $d = shift @p) {
+            my @p = split "/", "$FindBin::Bin";
+            while (my $d = pop @p) {
                 last if $d eq 't';
             }
-            $path_prefix = join '/', reverse @p;
+            $path_prefix = join '/', @p;
         }
         elsif ($enable{dir}) {
             $path_prefix = $enable{dir};
