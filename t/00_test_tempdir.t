@@ -10,7 +10,7 @@ ok $dir, "$dir created";
 
 ok !`ls $dir`, "ls $dir nothing";
 
-Test::TempDir::Simple->import(-above => qw/dirtest/);
+Test::TempDir::Simple->import(-t => qw/dirtest/);
 
 ok -d "$dir/dirtest", "$dir/dirtest exists";
 ok -e "$dir/dirtest/hoge", "$dir/dirtest/hoge exists";

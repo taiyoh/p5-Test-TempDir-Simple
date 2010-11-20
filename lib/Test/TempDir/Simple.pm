@@ -21,8 +21,8 @@ BEGIN {
     sub testdir() { $dir }
 
     my %switches = (
-        above => 1,
-        dir   => 1
+        t   => 1,
+        dir => 1
     );
 
     do {
@@ -53,12 +53,17 @@ BEGIN {
             }
         }
         my $path_prefix = '';
-        if ($enable{above}) {
+        if ($enable{t}) {
             unless ($INC{'FindBin.pm'}) {
                 require 'FindBin.pm';
                 FindBin->import;
             }
-            $path_prefix = "$FindBin::Bin/..";
+            my @p = reverse split "/", "$FindBin::Bin";
+            my @t_path;
+            while (my $d = shift @p) {
+                last if $d eq 't';
+            }
+            $path_prefix = join '/', reverse @p;
         }
         elsif ($enable{dir}) {
             $path_prefix = $enable{dir};
@@ -66,6 +71,7 @@ BEGIN {
         for my $path (@path) {
             my $apath = abs_path("${path_prefix}/${path}");
             my $d = (split '/', $apath)[-1];
+            print "[path copy] $apath\n";
             dircopy($apath, "${dir}/${d}") if -d $apath;
         }
     }
