@@ -78,6 +78,10 @@ BEGIN {
     initdir();
 };
 
+1;
+
+__END__
+
 =head1 NAME
 
 Test::TempDir::Simple - 任意のディレクトリを一時ディレクトリに展開
@@ -116,6 +120,4 @@ L<File::Temp>, L<File::Copy::Recursive>
 taiyoh E<lt>sun.basix@gmail.com<gt>
 
 =cut
-
-1;
 
