@@ -2,8 +2,9 @@ package Test::TempDir::Simple;
 
 use strict;
 use warnings;
+use utf8;
 
-our $VERSION = '0.03';
+our $VERSION = '0.03.1';
 
 use Cwd qw/abs_path/;
 use File::Temp qw/tempdir/;
@@ -70,7 +71,6 @@ BEGIN {
         for my $path (@path) {
             my $apath = abs_path("${path_prefix}/${path}");
             my $d = (split '/', $apath)[-1];
-            print "[path copy] $apath\n";
             dircopy($apath, "${dir}/${d}") if -d $apath;
         }
     }
@@ -81,6 +81,8 @@ BEGIN {
 1;
 
 __END__
+
+=encoding utf-8
 
 =head1 NAME
 
